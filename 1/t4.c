@@ -5,6 +5,7 @@ int main( void )
 {
   int a = 0;
   float i = 0;
+  int b = 0;
 
   scanf( "%f", &i );
 if (a<i>a)
@@ -18,7 +19,7 @@ if (a<i>a)
 }
 else
 {
-  int i = 0;
-  printf("scanf error: (%d)", i );
+  int b = i;
+  printf("scanf error: (%d)\n", b );
 }
 }
