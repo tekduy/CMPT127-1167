@@ -19,6 +19,6 @@ if (a<i>a)
 else
 {
   int i = 0;
-  printf( "scanf error: (%d)\n ", i );
+  printf("scanf error: (%d)\n ", i );
 }
 }
