@@ -1,33 +1,77 @@
+
+
 #include <stdio.h>
 #include <math.h>
 
 int main( void )
 {
-  int a = 0;
-  float i = 0;
-  int b = 0;
+int a = 0;
+float i = 0;
+int b = 0;
 
-  int result = scanf( "%f", &i );
-while (a < i > a)
-{
-if ( a < i > a )
-{
-  int x = floor(i);
-  int y = round(i);
-  int z = ceil(i);
+int result = 0;
 
-  printf("%d %d %d\n", x, y, z );
+while ( result != EOF)
+{
+int result = scanf( "%f", &i );
 
-  int result = scanf( "%f", &i );
-}
-if (i == 0)
+if (result == EOF)
 {
-  int b = i;
-  int result = printf("scanf error: (%d)\n", b);
+
+    printf("Done.\n");
+
+
+    return 0;
+
 }
-if ( result == EOF )
+
+ 
+
+if ( result != a )
+
 {
-  printf("Done.\n");
+
+ 
+
+
+    int x = floor(i);
+
+
+    int y = round(i);
+
+
+    int z = ceil(i);
+
+ 
+
+
+    printf("%d %d %d\n", x, y, z );
+
+ 
+
 }
+
+ 
+
+else
+
+{
+
+
+    if (result == a)
+
+{
+
+
+      int result = printf("scanf error: (%d)\n", b);
+
+
+      return 0;
+
 }
+
 }
+
+}
+
+} 
