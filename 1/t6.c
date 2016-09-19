@@ -30,7 +30,7 @@ int main(void){
       {
         small = arr[i];
       }
-      printf("Small is: %f\n", small);
+      //printf("Small is: %f\n", small);
     }
     large = arr[0];
     for(i=0; i<n; i++)
