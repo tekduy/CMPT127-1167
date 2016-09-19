@@ -39,6 +39,6 @@ int main(void){
       }
     }
     }
-    printf("%.2f %.2f %.2f\n", small, average, large);
+    printf("%.2f %.2f %.2f\n", small, large, average);
     return 0;
 }
