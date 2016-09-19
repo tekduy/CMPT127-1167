@@ -12,14 +12,14 @@ int main(void){
 
     for(i=0; result!=EOF; i++)  /* Stores number entered by user. */
     {
-       if (isalpha(arr[i]))
-       {
-       n-=1;
-       }
        n+=1;
        result = scanf("%f", &arr[i]);
        sum += arr[i];
        //printf("%f", arr[i]);
+       if (isalpha(arr[i]))
+       {
+       n-=1;
+       }
     }
 
     //printf("sum = %f n = %f ", sum, n);
