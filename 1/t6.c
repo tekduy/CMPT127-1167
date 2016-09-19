@@ -10,18 +10,15 @@ int main(void){
     float average;
     int n=-1;
 
-    for(i=0; result!=EOF; i++)  /* Stores number entered by user. */
+    for(i=0; result!=EOF; i++)
     {
        n+=1;
        result = scanf("%f", &arr[i]);
        sum += arr[i];
-       //printf("%f", arr[i]);
-       if (isalpha(arr[i]))
-       {
-       n-=1;
-       }
-    }
 
+       //printf("%f", arr[i]);
+    }
+    //printf("n is: %d\n",n);
     //printf("sum = %f n = %f ", sum, n);
 
     average = sum/n;
@@ -29,16 +26,16 @@ int main(void){
     small = arr[0];
     for(i=0; i<n; i++)
     {
-      if(arr[i]<arr[0])
+      if(arr[i]<small)
       {
         small = arr[i];
       }
-      //printf("Small is: %f\n", small);
+      printf("Small is: %f\n", small);
     }
     large = arr[0];
     for(i=0; i<n; i++)
     {
-      if(arr[i]>arr[0])
+      if(arr[i]>large)
       {
         large = arr[i];
       }
