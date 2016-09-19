@@ -23,19 +23,23 @@ int main(void){
     small = arr[0];
     for(i=0; i<n; i++)
     {
-      if(arr[i]<arr[i+1])
+      if(arr[i]<arr[0])
       {
         small = arr[i];
       }
+      //printf("Small is: %f\n", small);
     }
     large = arr[0];
     for(i=0; i<n; i++)
     {
-      if(arr[i]>arr[i+1])
+      if(arr[i]>arr[0])
       {
         large = arr[i];
       }
     }
+    if ( result == EOF )
+    {
     printf("%.2f %.2f %.2f\n", small, large, average);
     return 0;
+    }
 }
