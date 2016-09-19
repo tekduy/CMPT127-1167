@@ -1,6 +1,6 @@
 #include <stdio.h>
 int main(void){
-    int i, result, done;
+    int i, result;
     float small;
     float large;
     float arr[100];
@@ -25,7 +25,7 @@ int main(void){
     small = arr[0];
     for(i=0; i<n; i++)
     {
-      if(arr[i]<arr[n])
+      if(arr[i]>arr[i+1])
       {
         small = arr[i];
       }
@@ -33,7 +33,7 @@ int main(void){
     large = arr[0];
     for(i=0; i<n; i++)
     {
-      if(arr[i]>arr[n])
+      if(arr[i]<arr[i+1])
       {
         large = arr[i];
       }
