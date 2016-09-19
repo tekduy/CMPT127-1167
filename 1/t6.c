@@ -8,8 +8,6 @@ int main(void){
     float average;
     int n=-1;
 
-    while(result!=EOF)
-    {
     for(i=0; result!=EOF; i++)  /* Stores number entered by user. */
     {
        n+=1;
@@ -25,7 +23,7 @@ int main(void){
     small = arr[0];
     for(i=0; i<n; i++)
     {
-      if(arr[i]>arr[i+1])
+      if(arr[i]<arr[i+1])
       {
         small = arr[i];
       }
@@ -33,11 +31,10 @@ int main(void){
     large = arr[0];
     for(i=0; i<n; i++)
     {
-      if(arr[i]<arr[i+1])
+      if(arr[i]>arr[i+1])
       {
         large = arr[i];
       }
-    }
     }
     printf("%.2f %.2f %.2f\n", small, large, average);
     return 0;
