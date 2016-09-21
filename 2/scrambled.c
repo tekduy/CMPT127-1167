@@ -3,25 +3,38 @@
 
 int i, fix, z;
 int yes = 0;
+int flag1 = 0;
 
 int scrambled( unsigned int a[], unsigned int b[], unsigned int len )
 {
   fix = len - 1;
-  for ( i = 0; i < len; i++)
+  if (len == 0)
     {
-      if (a[i] == b[i])
-        {
-          return 1;
-        }
+      printf("Loop 1\n");
+      return 1;
     }
 
-    for ( i = 0; i < len; i++)
-      {
-        if (a[i] == b[fix-i])
-          {
-            return 1;
-          }
-      }
+//  for ( i = 0; i < len; i++)
+//    {
+//      if (a[i] == b[i])
+//        {
+//          printf("Loop 2\n");
+//          flag1 = 1;
+//        }
+//      else
+//        {
+//          flag1 = 0;
+//        }
+//    }
+
+//    for ( i = 0; i < len; i++)
+//      {
+//        if (a[i] == b[fix-i])
+//          {
+//            printf("Loop 3\n");
+//            return 1;
+//          }
+//      }
 
 for (z = 0; z < len; z++)
   {
@@ -36,14 +49,14 @@ for (z = 0; z < len; z++)
           }
       }
   }
-if (len == 0)
-  {
-    return 1;
-  }
 yes = yes/len;
-if (yes == len)
+if (2 > yes)
+{
+if (0 < yes)
   {
+    printf("Yes\n");
     return 1;
   }
+}
   return 0;
 }
