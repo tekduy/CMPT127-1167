@@ -1,12 +1,11 @@
 #include <stdlib.h>
 #include <stdio.h>
 
-int a[], b[];
-unsigned int len;
+int i;
 
 int identical( int a[], int b[], unsigned int len )
   {
-    for (int i = 0; i < len; i++)
+    for (i = 0; i < len; i++)
       {
         if (a[i] < b[i])
           {
@@ -17,5 +16,5 @@ int identical( int a[], int b[], unsigned int len )
             return 0;
           }
       }
-      return 0;
+      return 1;
   }
