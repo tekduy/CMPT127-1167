@@ -2,7 +2,6 @@
 #include <stdio.h>
 
 int i, fix, z;
-int flag = 0;
 int yes = 0;
 
 int scrambled( unsigned int a[], unsigned int b[], unsigned int len )
@@ -36,6 +35,10 @@ for (z = 0; z < len; z++)
             yes+=1;
           }
       }
+  }
+if (len == 0)
+  {
+    return 1;
   }
 yes = yes/len;
 if (yes == len)
