@@ -16,9 +16,13 @@ int scrambled( unsigned int a[], unsigned int b[], unsigned int len )
         {
           return 1;
         }
-      else
+    }
+  for ( i = 0 ; i < len ; i++)
+    {
+      if (a[fix-i] == b[i])
         {
-          return 0;
+          return 1;
         }
     }
+  return 0;
 }
