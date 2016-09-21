@@ -7,22 +7,22 @@ int yes = 0;
 
 int scrambled( unsigned int a[], unsigned int b[], unsigned int len )
 {
-  //fix = len - 1;
-  //for ( i = 0; i < len; i++)
-    //{
-      //if (a[i] == b[i])
-        //{
-        //  return 1;
-        //}
-  //  }
+  fix = len - 1;
+  for ( i = 0; i < len; i++)
+    {
+      if (a[i] == b[i])
+        {
+          return 1;
+        }
+    }
 
-  //  for ( i = 0; i < len; i++)
-    //  {
-    //    if (a[i] == b[fix-i])
-  //        {
-    //        return 1;
-    //      }
-  //    }
+    for ( i = 0; i < len; i++)
+      {
+        if (a[i] == b[fix-i])
+          {
+            return 1;
+          }
+      }
 
 for (z = 0; z < len; z++)
   {
