@@ -178,7 +178,7 @@ void flip_vertical( uint8_t array[],
   {
         for (k=0; k<rows/2; k++)
 	{
-            temp = array[a + b*cols];
+            temp = array[i + k*cols];
             array[i + k*cols] = array[i + ((rows-1)-k)*cols];
             array[i + ((rows-1)-k)*cols] = temp;
         }
