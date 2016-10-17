@@ -237,9 +237,9 @@ void invert( uint8_t array[],
     int i, k;
     uint8_t a;
 
-  	for(i=0; i<(cols*rows); i++)
+  	for(i=0; i<cols; i++)
   	{
-  		for(k=0; k<(cols*rows); k++)
+  		for(k=0; k<rows; k++)
   		{
   			a = get_pixel(array, cols, rows, i, k);
         set_pixel(array, cols, rows, i, k, 255-a);
@@ -285,7 +285,39 @@ void normalize( uint8_t array[],
         unsigned int cols,
         unsigned int rows )
 {
-    // your code here
+
+  // your code here
+
+	int small = array[0];
+	int i, k;
+
+	for (i=0; i<cols; i++)
+	{
+		for(k=0; k<rows; k++)
+		{
+			if(array[i + k*cols] < small)
+			{
+				small = array[i + k*cols];
+			}
+		}
+	}
+
+  small = 0;
+
+	int big = array[0];
+	int i, k;
+
+	for(i=0; i<cols; i++)
+	{
+		for(k=0; k<rows; k++)
+		{
+			if (array[i + k*cols] > big)
+			{
+				big = array[i + k*cols];
+			}
+		}
+	}
+  big = 255;
 }
 
 /* TASK 8 */
