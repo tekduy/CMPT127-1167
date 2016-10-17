@@ -236,7 +236,6 @@ void invert( uint8_t array[],
   			array[i + k*cols] = 255-array[i + k*cols];
   		}
   	}
-
 }
 
 /* TASK 6 */
@@ -250,8 +249,23 @@ void scale_brightness( uint8_t array[],
             double scale_factor )
 {
   // your code here
-}
+  int i, k;
 
+  for(i=0; i<cols; i++)
+  {
+    for(k=0; k<rows; k++)
+    {
+      if((scale_factor*array[i+k*cols] + 0.5) > 255)
+      {
+        array[i+k*cols]=255;
+      }
+      else
+      {
+        array[i+k*cols]=scale_factor*array[i+k*cols]+0.5;
+      }
+    }
+  }
+}
 
 /* TASK 7 */
 
