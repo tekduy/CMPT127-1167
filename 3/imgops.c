@@ -318,37 +318,30 @@ uint8_t* half( const uint8_t array[],
 	       unsigned int cols,
 	       unsigned int rows )
 {
-	// your code here
-	uint8_t *new = malloc((rows/2)*(cols/2)*sizeof(uint8_t));
+ // your  code here
 
-	if (new == NULL)
-	{
-		return NULL;
-	}
+ int c, r;
+ int mean  ;
 
-	int k, b, x, y;
+ int newlength = (cols / 2) * (rows / 2) ;
 
-	for (b=0; b<rows/2; b++)
-	{
-		for (a=0; a<cols/2; a++)
-		{
-			unsigned int total = 0;
+ uint8_t* newar = malloc((newlength) *sizeof(uint8_t)) ;
 
-			for (x=2*b; x<2*b+2; x++)
-			{
-				for (y=2*a; y<2*a+2; y++)
-				{
-					total += array[y + x*cols];
-				}
-			}
+   for(c=0;c < (rows - 1); c = c + 2)
+   {
 
-			new[a + b*(cols/2)] = round(total/4.0);
-		}
-	}
+     for(r=0; r < (cols - 1) ; r = r + 2 )
+     {
 
-	return new;
+       mean = round( ( array[(r) + (c) * cols ] + array[(r + 1) + (c) * cols ] + array[(r) + (c + 1) * cols ] + array[(r + 1) + (c + 1) * cols ] ) / 4.0 ) ;
+       newar[(r/2) + (c/2) * (cols/2)] = mean ;
+
+     }
+
+   }
+
+ return newar;
 }
-
 
 
 
