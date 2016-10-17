@@ -227,6 +227,16 @@ void invert( uint8_t array[],
          unsigned int rows )
 {
     // your code here
+    int i, k;
+
+  	for(i=0; i<(cols*rows); i++)
+  	{
+  		for(k=0; k<(cols*rows); k++)
+  		{
+  			array[i + k*cols] = 255-array[i + k*cols];
+  		}
+  	}
+
 }
 
 /* TASK 6 */
