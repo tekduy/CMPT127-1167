@@ -50,6 +50,7 @@ void zero( uint8_t array[],
 	   unsigned int rows )
 {
   // your code here.
+  memset(array, 0, cols*rows*sizeof(uint8_t));
 }
 
 // Returns a pointer to a freshly allocated array that contains the
@@ -61,7 +62,13 @@ uint8_t* copy( const uint8_t array[],
            unsigned int rows )
 {
   // your code here
-  return NULL;
+  uint8_t* ret = malloc(cols*rows*sizeof(uint8_t));
+  if (!ret) {
+     perror("Call to malloc failed\n");
+     exit(1);
+  }
+  memcpy(ret, array, cols*rows*sizeof(uint8_t));
+  return ret;
 }
 
 
@@ -228,12 +235,14 @@ void invert( uint8_t array[],
 {
     // your code here
     int i, k;
+    uint8_t a;
 
   	for(i=0; i<(cols*rows); i++)
   	{
   		for(k=0; k<(cols*rows); k++)
   		{
-  			array[i + k*cols] = 255-array[i + k*cols];
+  			a = get_pixel(array, cols, rows, i, k);
+        set_pixel(array, cols, rows, i, j, 255-a);
   		}
   	}
 }
