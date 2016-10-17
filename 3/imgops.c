@@ -295,7 +295,7 @@ void normalize( uint8_t array[],
   {
     if(round((array[i] * scale_factor) + b)  >= 255)
       {
-        array[i] = 255 ; 
+        array[i] = 255 ;
       }
     else
       {
@@ -318,8 +318,35 @@ uint8_t* half( const uint8_t array[],
 	       unsigned int cols,
 	       unsigned int rows )
 {
-  // your code here
-  return NULL;
+	// your code here
+	uint8_t *new = malloc((rows/2)*(cols/2)*sizeof(uint8_t));
+
+	if (new == NULL)
+	{
+		return NULL;
+	}
+
+	int k, b, x, y;
+
+	for (b=0; b<rows/2; b++)
+	{
+		for (a=0; a<cols/2; a++)
+		{
+			unsigned int total = 0;
+
+			for (x=2*b; x<2*b+2; x++)
+			{
+				for (y=2*a; y<2*a+2; y++)
+				{
+					total += array[y + x*cols];
+				}
+			}
+
+			new[a + b*(cols/2)] = round(total/4.0);
+		}
+	}
+
+	return new;
 }
 
 
