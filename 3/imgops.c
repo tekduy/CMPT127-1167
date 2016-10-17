@@ -242,7 +242,7 @@ void invert( uint8_t array[],
   		for(k=0; k<(cols*rows); k++)
   		{
   			a = get_pixel(array, cols, rows, i, k);
-        set_pixel(array, cols, rows, i, j, 255-a);
+        set_pixel(array, cols, rows, i, k, 255-a);
   		}
   	}
 }
