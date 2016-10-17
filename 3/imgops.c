@@ -285,39 +285,25 @@ void normalize( uint8_t array[],
         unsigned int cols,
         unsigned int rows )
 {
+    int minval = min(array, cols, rows) ;
+    int maxval = max(array, cols, rows) ;
+    double scale_factor = ((maxval - minval) / 255) ;
+    double b = ( - (scale_factor * minval) ) ;
+    int length = rows * cols ;
+  int i ;
+  for(i=0;i<length;i++)
+  {
+    if(round((array[i] * scale_factor) + b)  >= 255)
+      {
+        array[i] = 255 ; 
+      }
+    else
+      {
+        array[i] = (round((array[i] * scale_factor)+ b));
+      }
+  }
+return ;
 
-  // your code here
-
-	int small = array[0];
-	int i, k;
-
-	for (i=0; i<cols; i++)
-	{
-		for(k=0; k<rows; k++)
-		{
-			if(array[i + k*cols] < small)
-			{
-				small = array[i + k*cols];
-			}
-		}
-	}
-
-  small = 0;
-
-	int big = array[0];
-	int i, k;
-
-	for(i=0; i<cols; i++)
-	{
-		for(k=0; k<rows; k++)
-		{
-			if (array[i + k*cols] > big)
-			{
-				big = array[i + k*cols];
-			}
-		}
-	}
-  big = 255;
 }
 
 /* TASK 8 */
