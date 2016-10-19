@@ -2,6 +2,7 @@
 #include <string.h>
 #include <stdlib.h>
 #include <assert.h>
+#include <stddef.h>
 #include "intarr.h"
 
 /*
@@ -80,7 +81,7 @@ intarr_result_t intarr_set( intarr_t* ia,
   if (ia == NULL){
     return INTARR_BADARRAY;
   }
-  else if (index > 0){
+  else if (index > 0 && index < (ia->len)){
     ia->data[index] = val;
     return INTARR_OK;
   }
@@ -99,8 +100,8 @@ intarr_result_t intarr_get( const intarr_t* ia,
   if (ia == NULL){
     return INTARR_BADARRAY;
   }
-  else if (index>0 && i != NULL){
-    ia->data[index] = i;
+  else if (index < (ia->len) && i != NULL){
+    *i = ia->data[index];
     return INTARR_OK;
   }
   else{
