@@ -21,21 +21,6 @@
    FUNCTIONS TO PASS THE TASK.
 */
 
-/* Structure type that encapsulates our safe int array. */
-typedef struct {
-  int* data;
-  unsigned int len;
-} intarr_t;
-
-/* A type for returning status codes */
-typedef enum {
-  INTARR_OK,
-  INTARR_BADARRAY,
-  INTARR_BADINDEX,
-  INTARR_BADALLOC,
-  INTARR_NOTFOUND
-} intarr_result_t;
-
 /* LAB 5 TASK 1 */
 
 // Create a new intarr_t with initial size len.  If successful
