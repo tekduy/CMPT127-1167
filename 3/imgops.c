@@ -410,7 +410,24 @@ unsigned long int region_integrate( const uint8_t array[],
                     unsigned int bottom )
 {
     // your code here
-    return 0;
+	unsigned long int total = 0;
+	int a, b;
+
+	if ((right-left)*(bottom-top) == 0)
+	{
+		return total;
+	}
+	for (a=left; a<right; a++)
+	{
+		for (b=top; b<bottom; b++)
+		{
+			total = total + array[a + b*cols];
+		}
+	}
+
+	printf("%lu\n", total);
+
+	return total;
 }
 
 /* TASK 11 */
