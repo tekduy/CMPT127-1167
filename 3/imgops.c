@@ -295,11 +295,11 @@ void normalize( uint8_t array[],
   {
     if(array[i] == minval)
       {
-        array[i] = 255;
+        array[i] = 0;
       }
     else if (array[i] == maxval)
     {
-      array[i] = 0;
+      array[i] = 255;
     }
   }
 return ;
