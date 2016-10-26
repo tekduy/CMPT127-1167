@@ -303,7 +303,8 @@ void normalize( uint8_t array[],
     }
     else
     {
-      array[i] = (round((array[i] * scale_factor)));
+      temp = (round((array[i] * scale_factor)));
+      array[i] = (round((array[i] * temp)));
     }
   }
 return ;
