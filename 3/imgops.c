@@ -293,14 +293,14 @@ void normalize( uint8_t array[],
   int i ;
   for(i=0;i<length;i++)
   {
-    if(round((array[i] * scale_factor) + b)  >= 255)
+    if(array[i] == minval)
       {
-        array[i] = 255 ;
+        array[i] = 255;
       }
-    else
-      {
-        array[i] = (round((array[i] * scale_factor)+ b));
-      }
+    else if (array[i] == maxval)
+    {
+      array[i] = 0;
+    }
   }
 return ;
 
