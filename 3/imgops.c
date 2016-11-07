@@ -285,11 +285,10 @@ void normalize( uint8_t array[],
         unsigned int cols,
         unsigned int rows )
 {
-    int minval = min(array, cols, rows) ;
-    int maxval = max(array, cols, rows) ;
-    double scale_factor = ((maxval - minval) / 255) ;
-    double b = ( - (scale_factor * minval) ) ;
-    int length = rows * cols ;
+    int minval = min(array, cols, rows);
+    int maxval = max(array, cols, rows);
+    double scale_factor = ((maxval - minval) / 255);
+    int length = rows * cols;
   int i ;
   for(i=0;i<length;i++)
   {
@@ -308,7 +307,7 @@ void normalize( uint8_t array[],
       array[i] = (round((array[i] + temp)));
     }
   }
-return ;
+return;
 
 }
 
