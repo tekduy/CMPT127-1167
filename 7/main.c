@@ -25,6 +25,11 @@ int test_element_create( void ){
 		return 1;
 	}
 
+	if (el->val == NULL){
+		puts("element_create(): element is NULL");
+		return 1;
+	}
+
 	return 0;
 }
 
@@ -47,6 +52,23 @@ int test_list_index (list_t* list, unsigned int i){
 	return 0;
 }
 
+int test_list_append(void){
+	list_t* empty = list_create();
+	list_append(empty, 5);
+
+	if (empty->head == NULL)
+	{
+		puts("list_append(): error when append el to empty list");
+		return 1;
+	}
+	else if (empty->tail == NULL){
+		puts("list_append(): error when append el to empty list");
+		return 1;
+	}
+
+	list_destroy(empty);
+	return 0;
+}
 
 int test_list_prepend(void){
 	list_t* empty = list_create();
@@ -74,7 +96,8 @@ int test_list_create(){
 	assert(list);
 
 	if (list->head != NULL && list->tail != NULL){
-		puts("list_create(): failed to create list with head and tail set to 				NULL");
+		puts("list_create(): failed to create list with head and tail set to NULL");
+		printf("Empty list\n");
 		list_destroy(list);
 
 		return 1;
@@ -99,7 +122,6 @@ int main( int argc, char* argv[] ){
 
   list_print( list );
 
-
   int index = 2;
   element_t* el = list_index( list, index );
 
@@ -109,7 +131,7 @@ int main( int argc, char* argv[] ){
       return 1;
     }
 
-  printf( "value at index %d is %d\n", index, el->val );
+  printf( "The value at index %d is %d\n", index, el->val );
 
   if( el->val != -2 )
     return 1;
@@ -131,6 +153,10 @@ int main( int argc, char* argv[] ){
 
 	if ( test_list_create() == 1)
 	{
+		return 1;
+	}
+
+	if (test_list_append() == 1){
 		return 1;
 	}
 
