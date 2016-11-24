@@ -30,6 +30,12 @@ int test_element_create( void ){
 
 
 int test_list_index (list_t* list, unsigned int i){
+
+	if (list->head == NULL || list->head->next == NULL){
+		puts("list_index(): error for empty list");
+		return 1;
+	}
+
 	element_t* ret = list_index (list, 0);
 
 	if (ret->val != -4 && list->head != NULL){
@@ -44,26 +50,13 @@ int test_list_index (list_t* list, unsigned int i){
 		return 1;
 	}
 
-	return 0;
-}
-
-/*int test_list_index2 (void){
-	list_t * empty = list_create();
-	element_t * el = empty->head;
-	unsigned int now = 0;
-
-	while (now < 100){
-		if (el->next == NULL){
-			puts("list_index(): error when indexing an empty list");
-			return 1;
-		}
-
-		now++;
-		el = el->next;
+	if (list->head == NULL || list->head->next == NULL){
+		puts("list_index(): error for empty list");
+		return 1;
 	}
 
 	return 0;
-}*/
+}
 
 int test_list_append(void){
 	list_t* empty = list_create();
@@ -144,7 +137,17 @@ int main( int argc, char* argv[] ){
       return 1;
     }
 
+	else{
   printf( "The value at index %d is %d\n", index, el->val );
+	}
+
+	list_t * empty = list_create();
+	list_print(empty);
+
+	if ( test_list_index (empty, 0) == 1 )
+	{
+		return 1;
+	}
 
   if( el->val != -2 )
     return 1;
@@ -158,13 +161,6 @@ int main( int argc, char* argv[] ){
 	{
 		return 1;
 	}
-
-	/*
-	if ( test_list_index2() == 1 )
-	{
-		return 1;
-	}
-	*/
 
 	if ( test_list_prepend() == 1)
 	{
