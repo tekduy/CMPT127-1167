@@ -440,15 +440,15 @@ void key_up( unsigned char key, int x, int y )
 
   switch(key){
     case 'z':
-      if (ship.da > 0){
+      if (ship.da > 0 || ship.da < 0){
         ship.da = 0;
-        break;
       }
+	break;
     case 'x':
-      if (ship.da < 0){
+      if (ship.da < 0 || ship.da > 0){
         ship.da = 0;
-        break;
       }
+	break;
     case 'm':
       if (ship.thrust == 1){
         ship.thrust = 0;
