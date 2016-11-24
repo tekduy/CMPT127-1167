@@ -4,7 +4,23 @@
 #include <assert.h>
 #include "intarr.h"
 
+/*
+typedef struct {
+  int* data;
+  unsigned int len;
+} intarr_t;
+*/
 
+/* A type for returning status codes */
+/*
+typedef enum {
+  INTARR_OK,
+  INTARR_BADARRAY,
+  INTARR_BADINDEX,
+  INTARR_BADALLOC,
+  INTARR_NOTFOUND
+} intarr_result_t;
+*/
 
 /* LAB 6 TASK 1 */
 
@@ -16,6 +32,7 @@
 */
 int intarr_save_binary( intarr_t* ia, const char* filename ){
 
+/*
 const size_t len = ia->len;
 intarr_t arr[len];
 
@@ -40,9 +57,19 @@ if(ia != NULL){
 else{
 	return INTARR_BADINDEX;
 }
+*/
+
+unsigned int len = ia->len;
+intarr_t * arr = intarr_create(len);
+intarr_t * newia = intarr_copy(ia);
+arr->len = newia->len;
+arr->data = newia->len;
 
 FILE* f = fopen("filename", "w");
-fwrite(arr, sizeof(int), len, f);
+if (!f){
+	return 1; //Unable to open file
+}
+fwrite(arr, sizeof(intarr_t), len, f);
 fclose(f);
 
 return 0;
@@ -54,6 +81,30 @@ return 0;
   newly-allocated intarr_t on success, or NULL on failure.
 */
 intarr_t* intarr_load_binary( const char* filename ){
+	unsigned int len = 100;
+
+	FILE * f = fopen("filename", "r");
+	if (!f){
+		return 1; //Unable to open file
+	}
+	fread(arr, sizeof(intarr_t), len, r);
+	intarr_t * newia = intarr_create(len);
+	newia->len = len;
+	assert(newia);
+	if (f != NULL){
+		while(!feof(f)){
+			fscanf(f, "%d", newia->data);
+		}
+	}
+	else{
+		return NULL;
+	}
+	fclose(f);
+	return newia;
+}
+
+
+	/*
 	const size_t len = 0;
 	FILE* f = fopen("filename", "r");
 	fscanf (f, "%d", len);
@@ -72,4 +123,4 @@ intarr_t* intarr_load_binary( const char* filename ){
 	}
 	fclose(f);
 	return newia;
-}
+}*/
