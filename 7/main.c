@@ -47,7 +47,7 @@ int test_list_index (list_t* list, unsigned int i){
 	return 0;
 }
 
-int test_list_index2 (void){
+/*int test_list_index2 (void){
 	list_t * empty = list_create();
 	element_t * el = empty->head;
 	unsigned int now = 0;
@@ -63,7 +63,7 @@ int test_list_index2 (void){
 	}
 
 	return 0;
-}
+}*/
 
 int test_list_append(void){
 	list_t* empty = list_create();
@@ -159,10 +159,12 @@ int main( int argc, char* argv[] ){
 		return 1;
 	}
 
+	/*
 	if ( test_list_index2() == 1 )
 	{
 		return 1;
 	}
+	*/
 
 	if ( test_list_prepend() == 1)
 	{
