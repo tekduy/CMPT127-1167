@@ -25,11 +25,6 @@ int test_element_create( void ){
 		return 1;
 	}
 
-	if (el->val == NULL){
-		puts("element_create(): element is NULL");
-		return 1;
-	}
-
 	return 0;
 }
 
@@ -53,7 +48,7 @@ int test_list_index (list_t* list, unsigned int i){
 }
 
 int test_list_index2 (void){
-	list * empty = list_create();
+	list_t * empty = list_create();
 	element_t * el = empty->head;
 	unsigned int now = 0;
 
