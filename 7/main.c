@@ -31,11 +31,6 @@ int test_element_create( void ){
 
 int test_list_index (list_t* list, unsigned int i){
 
-	if (list->head == NULL || list->head->next == NULL){
-		puts("list_index(): error for empty list");
-		return 1;
-	}
-
 	element_t* ret = list_index (list, 0);
 
 	if (ret->val != -4 && list->head != NULL){
@@ -47,11 +42,6 @@ int test_list_index (list_t* list, unsigned int i){
 
 	if ( ret->val != -2 && list->head != NULL ){
 		puts("list_index(): index 2 incorrect");
-		return 1;
-	}
-
-	if (list->head == NULL || list->head->next == NULL){
-		puts("list_index(): error for empty list");
 		return 1;
 	}
 
@@ -112,8 +102,17 @@ int test_list_create(){
 	list_destroy(list);
 
 	return 0;
-
 }
+
+/*int test_list_print (list_t * list){
+	int arr[9] = {-4, -3, -2, -1, 0, 1, 2, 3 ,4};
+	if (list_print(list) != arr){
+		puts("list_print(): does not print last value");
+		return 1;
+	}
+	return 0;
+}*/
+
 
 int main( int argc, char* argv[] ){
   list_t* list = list_create();
@@ -139,14 +138,6 @@ int main( int argc, char* argv[] ){
 
 	else{
   printf( "The value at index %d is %d\n", index, el->val );
-	}
-
-	list_t * empty = list_create();
-	list_print(empty);
-
-	if ( test_list_index (empty, 0) == 1 )
-	{
-		return 1;
 	}
 
   if( el->val != -2 )
@@ -175,6 +166,10 @@ int main( int argc, char* argv[] ){
 	if (test_list_append() == 1){
 		return 1;
 	}
+
+	/*if (test_list_print (list) == 1){
+		return 1;
+	}*/
 
   list_destroy( list );
 
