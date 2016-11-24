@@ -17,9 +17,9 @@
 int intarr_save_binary( intarr_t* ia, const char* filename ){
 
 const size_t len = ia->len;
-int arr[len];
+intarr_t arr[len];
 
-intarr_t* arr = malloc(sizeof(intarr_t));
+intarr_t * arr = malloc(sizeof(intarr_t));
 
 if( arr == 0 )
 {
@@ -73,4 +73,3 @@ intarr_t* intarr_load_binary( const char* filename ){
 	fclose(f);
 	return newia;
 }
-
