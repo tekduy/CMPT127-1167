@@ -52,6 +52,24 @@ int test_list_index (list_t* list, unsigned int i){
 	return 0;
 }
 
+int test_list_index2 (void){
+	list * empty = list_create();
+	element_t * el = empty->head;
+	unsigned int now = 0;
+
+	while (now < 100){
+		if (el->next == NULL){
+			puts("list_index(): error when indexing an empty list");
+			return 1;
+		}
+
+		now++;
+		el = el->next;
+	}
+
+	return 0;
+}
+
 int test_list_append(void){
 	list_t* empty = list_create();
 	list_append(empty, 5);
@@ -142,6 +160,11 @@ int main( int argc, char* argv[] ){
 	}
 
 	if ( test_list_index (list, 0) == 1 )
+	{
+		return 1;
+	}
+
+	if ( test_list_index2() == 1 )
 	{
 		return 1;
 	}
