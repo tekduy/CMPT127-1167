@@ -61,9 +61,8 @@ else{
 
 unsigned int len = ia->len;
 intarr_t * arr = intarr_create(len);
-intarr_t * newia = intarr_copy(ia);
-arr->len = newia->len;
-arr->data = newia->len;
+arr->len = ia->len;
+arr->data = ia->data;
 
 FILE* f = fopen("filename", "w");
 if (!f){
@@ -87,7 +86,7 @@ intarr_t* intarr_load_binary( const char* filename ){
 	if (!f){
 		return 1; //Unable to open file
 	}
-	fread(arr, sizeof(intarr_t), len, r);
+	fread(f, sizeof(intarr_t), len, r);
 	intarr_t * newia = intarr_create(len);
 	newia->len = len;
 	assert(newia);
