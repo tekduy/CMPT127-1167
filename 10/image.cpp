@@ -4,6 +4,7 @@
 #include <assert.h>
 #include "image.hpp"
 
+
 Image::Image()
   : cols(0),
     rows(0),
