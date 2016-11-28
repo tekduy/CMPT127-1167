@@ -3,6 +3,10 @@
 #include <stdio.h>
 #include <assert.h>
 #include "image2.hpp"
+#include <iostream>
+#include <fstream>
+
+using namespace std;
 
 Image::Image()
   : cols(0),
