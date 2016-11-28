@@ -32,32 +32,23 @@ int Image::resize( unsigned int width,  unsigned int height, uint8_t fillcolor )
 }
 
 int Image::set_pixel( unsigned int x, unsigned int y, uint8_t color ){
-  if (this->pixels == NULL){
-    return 1;
+  if(pixels) {
+      if(x < this->cols && y < this->rows) {
+          this->pixels[(this->cols * y) + x] = color;
+          return 0;
+      }
   }
-
-  if (x < 0 || x > this->cols || y < 0 || y > this->rows){
-    return 1;
-  }
-
-  this->pixels[ y * this->cols + x ] = color;
-  return 0;
+  return 1;
 }
 
+
 int Image::get_pixel( unsigned int x, unsigned int y, uint8_t* colorp ){
-  if (this->pixels == NULL){
-    return 1;
+  if(pixels && colorp != NULL) {
+      if(x < this->cols && y < this->rows)  {
+          *colorp = this->pixels[(this->cols * y) + x];
+          return 0;
+      }
   }
-
-  if (colorp == NULL){
-    return 1;
-  }
-
-  if (x < 0 || x > this->cols || y < 0 || y > this->rows){
-    return 1;
-  }
-
-  *colorp = this->pixels[ y * this->cols + x ];
-  return 0;
+  return 1;
 }
 
