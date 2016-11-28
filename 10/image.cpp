@@ -4,7 +4,6 @@
 #include <assert.h>
 #include "image.hpp"
 
-
 Image::Image()
   : cols(0),
     rows(0),
@@ -19,14 +18,16 @@ Image::~Image()
   }
 
 int Image::resize( unsigned int width,  unsigned int height, uint8_t fillcolor ){
-  if (this->pixels == NULL){
+  delete[] this->pixels;
+  this->pixels = new uint8_t[width * height];
+  if (pixels == NULL){
     return 1;
+  }
+  for (int i = 0; i< width*height; i++){
+    this->pixels[i] = fillcolor;
   }
   this->cols = width;
   this->rows = height;
-  for (int i = 0; i< width*height; i++){
-    pixels[i] = fillcolor;
-  }
   return 0;
 }
 
