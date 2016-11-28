@@ -81,12 +81,13 @@ return 0;
 */
 intarr_t* intarr_load_binary( const char* filename ){
 	unsigned int len = 100;
+	intarr_t * arr = intarr_create(len);
 
 	FILE * f = fopen("filename", "r");
 	if (!f){
 		return 1; //Unable to open file
 	}
-	fread(f, sizeof(intarr_t), len, r);
+	fread(arr, sizeof(intarr_t), len, f);
 	intarr_t * newia = intarr_create(len);
 	newia->len = len;
 	assert(newia);
