@@ -29,7 +29,7 @@ int test_element_create( void ){
 }
 
 int test_list_index2 (list_t* list, unsigned int i){
-	list_index (list, 0);
+	list_index(list, i);
 	return 0;
 }
 
