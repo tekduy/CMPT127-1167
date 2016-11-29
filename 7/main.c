@@ -28,8 +28,13 @@ int test_element_create( void ){
 	return 0;
 }
 
+int test_list_index2 (list_t* list, unsigned int i){
+	list_index (list, 0);
+	return 0;
+}
 
-int test_list_index (list_t* list, unsigned int i){
+
+int test_list_index(list_t* list, unsigned int i){
 
 	element_t* ret = list_index (list, 0);
 
@@ -139,6 +144,11 @@ int main( int argc, char* argv[] ){
 	else{
   printf( "The value at index %d is %d\n", index, el->val );
 	}
+
+	list_t* list2 = list_create();
+	list_print(list2);
+	test_list_index2 (list2, 0);
+
 
   if( el->val != -2 )
     return 1;
