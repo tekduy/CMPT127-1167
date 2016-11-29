@@ -284,14 +284,22 @@ void scale_brightness( uint8_t array[],
 void normalize( uint8_t array[],
         unsigned int cols,
         unsigned int rows )
-{
+{   /*
     int minval = min(array, cols, rows);
     int maxval = max(array, cols, rows);
-    double scale_factor = ((maxval - minval) / 255);
+    int maxrange = maxval-minval;
+    double scale_factor = ((maxval - minval) / maxrange);
+    int newmax = 255;
+    int newmin = 0;
+    int newrange = newmax-newmin;
     int length = rows * cols;
+    uint8_t ratios[length];
+    int difference = maxval-minval;
   int i ;
   for(i=0;i<length;i++)
   {
+    ratios[i] = 0;
+    ratios[i] = ((array[i]/difference)-1);
     if(array[i] == minval)
       {
         array[i] = 0;
@@ -302,12 +310,24 @@ void normalize( uint8_t array[],
     }
     else
     {
-      int temp = (array[i] * scale_factor);
-      //int temp = ((scale_factor) * minval); //previous push
-      array[i] = (round((array[i] + temp)));
+      array[i] = round(ratios[i] * 255);
     }
   }
 return;
+*/
+  uint8_t oldmin = min(array, cols, rows);
+  uint8_t oldmax = max(array, cols, rows);
+  uint8_t oldrange = oldmax-oldmax;
+
+  uint8_t newmin = 0;
+  uint8_t newmax = 255;
+  uint8_t newrange = newmax - newmin;
+  int i;
+  int length = rows * cols;
+  for (i=0; i<length; i++){
+    double scale = (array[i]-oldmin)/oldrange;
+    array[i] = (newrange*scale) + newmin;
+  }
 
 }
 
