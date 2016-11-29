@@ -138,6 +138,7 @@ int main( int argc, char* argv[] ){
 	list_print(list2);
 	element_t * el2 = list_index (list2, 0);
 
+
   if( el->val != -2 )
     return 1;
 
