@@ -17,7 +17,7 @@ int intarr_save_binary( intarr_t* ia, const char* filename ){
 assert(ia);
 assert(ia->data);
 
-FILE* f = fopen("filename", "w");
+FILE* f = fopen("filename", "wb");
 if (f == NULL){
   puts ("Failed to open image file for writing");
 	return 1; //Unable to open file
@@ -45,7 +45,7 @@ return 0;
 */
 intarr_t* intarr_load_binary( const char* filename ){
   unsigned int len;
-	FILE * f = fopen("filename", "r");
+	FILE * f = fopen("filename", "rb");
 	if (f == NULL){
 		return 1; //Unable to open file
 	}
