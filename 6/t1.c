@@ -80,9 +80,6 @@ return 0;
   newly-allocated intarr_t on success, or NULL on failure.
 */
 intarr_t* intarr_load_binary( const char* filename ){
-	unsigned int len = 100;
-	intarr_t * arr = intarr_create(len);
-
 	FILE * f = fopen("filename", "r");
 	if (!f){
 		return 1; //Unable to open file
