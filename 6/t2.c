@@ -73,7 +73,7 @@ intarr_t* intarr_load_json( const char* filename ){
 
   intarr_t * load = intarr_create(len);
   char c;
-  fscanf(f, "%c", &c);
+  fscanf(f, "%c ", &c);
 
   int value;
   while (fscanf(f, "%d, ", &value)){
