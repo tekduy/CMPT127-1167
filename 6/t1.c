@@ -26,6 +26,9 @@ if (f == NULL){
 //Write
 unsigned int len = ia->len;
 intarr_t * arr = intarr_create(len);
+if (!arr){
+  return 1;
+}
 arr->len = ia->len;
 arr->data = ia->data;
 
@@ -51,6 +54,9 @@ intarr_t* intarr_load_binary( const char* filename ){
   len = ftell(f);
   fseek(f, 0, SEEK_SET);
   intarr_t * newia = intarr_create(len);
+  if (!newia){
+    return 1;
+  }
   fread(newia, sizeof(intarr_t), len, f);
 	fclose(f);
 	return newia;
