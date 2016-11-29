@@ -29,8 +29,13 @@ int test_element_create( void ){
 }
 
 int test_list_index2 (list_t* list, unsigned int i){
-	list_index(list, i);
-	return 0;
+	element_t * ret = list_index(list, i);
+	if (ret != NULL){
+		return 1;
+	}
+	else{
+		return 0;
+	}
 }
 
 int test_list_index(list_t* list, unsigned int i){
@@ -137,7 +142,7 @@ int main( int argc, char* argv[] ){
 	list_t* list2 = list_create();
 	list_print(list2);
 	element_t * el2 = list_index (list2, 0);
-
+	element_t * el3 = list_index (list2, 2);
 
   if( el->val != -2 )
     return 1;
@@ -165,10 +170,6 @@ int main( int argc, char* argv[] ){
 	if (test_list_append() == 1){
 		return 1;
 	}
-
-	/*if (test_list_print (list) == 1){
-		return 1;
-	}*/
 
   list_destroy( list );
 
