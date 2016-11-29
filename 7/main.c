@@ -33,7 +33,6 @@ int test_list_index2 (list_t* list, unsigned int i){
 	return 0;
 }
 
-
 int test_list_index(list_t* list, unsigned int i){
 
 	element_t* ret = list_index (list, 0);
@@ -109,16 +108,6 @@ int test_list_create(){
 	return 0;
 }
 
-/*int test_list_print (list_t * list){
-	int arr[9] = {-4, -3, -2, -1, 0, 1, 2, 3 ,4};
-	if (list_print(list) != arr){
-		puts("list_print(): does not print last value");
-		return 1;
-	}
-	return 0;
-}*/
-
-
 int main( int argc, char* argv[] ){
   list_t* list = list_create();
 
@@ -147,8 +136,7 @@ int main( int argc, char* argv[] ){
 
 	list_t* list2 = list_create();
 	list_print(list2);
-	test_list_index2 (list2, 0);
-
+	element_t * el2 = list_index (list2, 0);
 
   if( el->val != -2 )
     return 1;
