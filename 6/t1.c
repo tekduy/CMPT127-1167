@@ -16,7 +16,6 @@ int intarr_save_binary( intarr_t* ia, const char* filename ){
 
 assert(ia);
 assert(ia->data);
-assert(ia->len);
 
 FILE* f = fopen("filename", "w");
 if (f == NULL){
