@@ -322,14 +322,15 @@ return;
   uint8_t newmin = 0;
   uint8_t newmax = 255;
   uint8_t newrange = newmax - newmin;
+  double scale;
   int i;
   int length = rows * cols;
   for (i=0; i<length; i++){
     if (oldrange == 0){
-      double scale = 0;
+      scale = 0;
     }
     else{
-      double scale = (array[i]-oldmin)/oldrange;
+      scale = (array[i]-oldmin)/oldrange;
     }
     array[i] = (newrange*scale) + newmin;
   }
