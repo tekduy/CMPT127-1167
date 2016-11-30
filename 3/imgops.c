@@ -336,6 +336,7 @@ return;
   }
 }
 
+
 /* TASK 8 */
 
 // Return a new image of size rows/2 by cols/2 If the original image
