@@ -55,7 +55,7 @@ intarr_t* intarr_load_binary( const char* filename ){
 		return 1; //Unable to open file
 	}
 
-  fd = fileno(f);
+  int fd = fileno(f);
   struct stat buf;
   stat(fd, &buf);
   len = buf.st_size;
