@@ -56,19 +56,18 @@ intarr_t* intarr_load_binary( const char* filename ){
 	}
 
   //int fd = fileno(f);
+  /*
   struct stat buf;
   stat(filename, &buf);
   len = buf.st_size;
-
-  /*
-  fseek(f, 0, SEEK_END);
-  len = ftell(f);
-  //fseek(f, 0, SEEK_SET);
-  rewind(f);
   */
 
+  //fseek(f, 0, SEEK_END);
+  //len = ftell(f);
+  //fseek(f, 0, SEEK_SET);
+  //rewind(f);
 
-  //len = (fseek(f, 0, SEEK_END)+1);
+  len = (fseek(f, 0, SEEK_END)+1);
   intarr_t * newia = intarr_create(len);
   if (!newia){
     return 1;
