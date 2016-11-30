@@ -315,6 +315,7 @@ void normalize( uint8_t array[],
   }
 return;
 */
+/*
   uint8_t oldmin = min(array, cols, rows);
   uint8_t oldmax = max(array, cols, rows);
   uint8_t oldrange = oldmax-oldmin;
@@ -334,6 +335,23 @@ return;
       array[i] = round((newrange*scale) + newmin);
     }
   }
+*/
+    int minval = min(array, cols, rows) ;
+    int maxval = max(array, cols, rows) ;
+    double scale_factor = ((maxval - minval) / 255) ;
+    double b = ( - (scale_factor * minval) ) ;
+    int length = rows * cols ;
+  int i ;
+  for(i=0;i<length;i++)
+  {
+    if(round((array[i] * scale_factor) + b)  >= 255 ){ 
+	array[i] = 255 ; 
+	}
+    else{ 
+	array[i] = (round((array[i] * scale_factor) + b )) ; 
+	}
+  }
+return;
 }
 
 
