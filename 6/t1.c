@@ -3,6 +3,10 @@
 #include <stdlib.h>
 #include <assert.h>
 #include "intarr.h"
+#include <sys/types.h>
+#include <sys/stat.h>
+#include <unistd.h>
+
 
 /* LAB 6 TASK 1 */
 
@@ -49,10 +53,17 @@ intarr_t* intarr_load_binary( const char* filename ){
 	if (f == NULL){
 		return 1; //Unable to open file
 	}
+  /*
+  struct stat buf;
+  stat(f, &buf);
+  len = buf.st_size;
 
   fseek(f, 0, SEEK_END);
   len = ftell(f);
   fseek(f, 0, SEEK_SET);
+  */
+
+  len = fseek(f, 0, SEEK_END);
   intarr_t * newia = intarr_create(len);
   if (!newia){
     return 1;
