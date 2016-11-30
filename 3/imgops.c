@@ -317,7 +317,7 @@ return;
 */
   uint8_t oldmin = min(array, cols, rows);
   uint8_t oldmax = max(array, cols, rows);
-  uint8_t oldrange = oldmax-oldmax;
+  uint8_t oldrange = oldmax-oldmin;
 
   uint8_t newmin = 0;
   uint8_t newmax = 255;
