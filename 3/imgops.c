@@ -327,15 +327,13 @@ return;
   int length = rows * cols;
   for (i=0; i<length; i++){
     if (oldrange == 0){
-	scale = 0;
+	     array[i] = array[i];
     }
-    if (oldrange > 0){
+    else{
     	scale = (array[i]-oldmin)/oldrange;
+      array[i] = round((newrange*scale) + newmin);
     }
-  
-    array[i] = round((newrange*scale) + newmin);
   }
-
 }
 
 /* TASK 8 */
