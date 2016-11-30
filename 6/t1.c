@@ -54,11 +54,12 @@ intarr_t* intarr_load_binary( const char* filename ){
 	if (f == NULL){
 		return 1; //Unable to open file
 	}
-  /*
+
+  fd = fileno(f);
   struct stat buf;
-  stat(f, &buf);
+  stat(fd, &buf);
   len = buf.st_size;
-  */
+
   /*
   fseek(f, 0, SEEK_END);
   len = ftell(f);
@@ -67,7 +68,7 @@ intarr_t* intarr_load_binary( const char* filename ){
   */
 
 
-  len = (fseek(f, 0, SEEK_END)+1);
+  //len = (fseek(f, 0, SEEK_END)+1);
   intarr_t * newia = intarr_create(len);
   if (!newia){
     return 1;
