@@ -325,7 +325,12 @@ return;
   int i;
   int length = rows * cols;
   for (i=0; i<length; i++){
-    double scale = (array[i]-oldmin)/oldrange;
+    if (oldrange == 0){
+      double scale = 0;
+    }
+    else{
+      double scale = (array[i]-oldmin)/oldrange;
+    }
     array[i] = (newrange*scale) + newmin;
   }
 
