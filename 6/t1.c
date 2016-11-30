@@ -57,13 +57,14 @@ intarr_t* intarr_load_binary( const char* filename ){
   struct stat buf;
   stat(f, &buf);
   len = buf.st_size;
-
+  */
   fseek(f, 0, SEEK_END);
   len = ftell(f);
-  fseek(f, 0, SEEK_SET);
-  */
+  //fseek(f, 0, SEEK_SET);
+  rewind(f);
 
-  len = fseek(f, 0, SEEK_END);
+
+  //len = (fseek(f, 0, SEEK_END)+1);
   intarr_t * newia = intarr_create(len);
   if (!newia){
     return 1;
