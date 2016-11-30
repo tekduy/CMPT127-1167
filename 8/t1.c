@@ -87,10 +87,10 @@ int point_array_remove( point_array_t* pa, unsigned int i ){
 	if(j < (pa->len - 1))
   	{
       for (k=0;k<(len-j);k++){
-    		pa->points[j+k] = pa->points[j+1];
-    		pa->points[j+k].x = pa->points[j+1].x ;
-    		pa->points[j+k].y = pa->points[j+1].y ;
-    		pa->points[j+k].z = pa->points[j+1].z ;
+    		pa->points[j+k] = pa->points[j+1+k];
+    		pa->points[j+k].x = pa->points[j+1+k].x ;
+    		pa->points[j+k].y = pa->points[j+1+k].y ;
+    		pa->points[j+k].z = pa->points[j+1+k].z ;
       }
   	}
 
