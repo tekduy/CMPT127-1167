@@ -21,6 +21,8 @@ int intarr_save_binary( intarr_t* ia, const char* filename ){
 assert(ia);
 assert(ia->data);
 
+unsigned int len = ia->len;
+
 FILE* f = fopen("filename", "wb");
 if (f == NULL){
   puts ("Failed to open image file for writing");
@@ -28,7 +30,7 @@ if (f == NULL){
 }
 
 //Write
-unsigned int len = ia->len;
+/*unsigned int len = ia->len;
 intarr_t * arr = intarr_create(len);
 if (!arr){
   return 1;
@@ -41,6 +43,24 @@ fclose(f);
 
 free(arr);
 return 0;
+*/
+else if ( fwrite ( &len, sizeof(int), 1, f) == 1 ){
+
+  if (fwrite (ia->data, sizeof(int), len, f) == len){
+    fclose(f);
+    return 0;
+  }
+
+  else{
+    fclose(f);
+    return 1;
+  }
+}
+
+else{
+  fclose(f);
+  return 1;
+}
 }
 
 /*
@@ -49,19 +69,16 @@ return 0;
   newly-allocated intarr_t on success, or NULL on failure.
 */
 intarr_t* intarr_load_binary( const char* filename ){
-  unsigned int len;
+  unsigned int len = 0;
 	FILE * f = fopen("filename", "rb");
 	if (f == NULL){
 		return 1; //Unable to open file
 	}
-
-  //int fd = fileno(f);
+  intarr_t * newia = malloc(sizeof(intarr_t));
+  if ( newia == NULL){
+    return 1;
+  }
   /*
-  struct stat buf;
-  stat(filename, &buf);
-  len = buf.st_size;
-  */
-
   fseek(f, 0, SEEK_END);
   len = ftell(f);
   //fseek(f, 0, SEEK_SET);
@@ -75,4 +92,21 @@ intarr_t* intarr_load_binary( const char* filename ){
   fread(newia->data, sizeof(int), len, f);
 	fclose(f);
 	return newia;
+  */
+
+  if ( fread (&len, sizeof(int), 1, f) != 1 ){
+    fclose(f);
+    free(newia);
+    return 1;
+  }
+
+  newia->data = malloc(len*sizeof(int));
+  if (fread(newia->data, sizeof(int), len, f) != len){
+    fclose(f);
+    free(newia);
+    return 1;
+  }
+
+  fclose(f);
+  return newia;
 }
