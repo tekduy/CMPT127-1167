@@ -61,17 +61,17 @@ int intarr_save_json( intarr_t* ia, const char* filename ){
 */
 intarr_t* intarr_load_json( const char* filename ){
 
-  unsigned int len;
+  //unsigned int len;
   FILE * f = fopen("filename", "r");
   if (f == NULL){
     return 1; //Unable to open file
   }
 
-  fseek(f, 0, SEEK_END);
-  len = ftell(f);
-  fseek(f, 0, SEEK_SET);
+  //fseek(f, 0, SEEK_END);
+  //len = ftell(f);
+  //fseek(f, 0, SEEK_SET);
 
-  intarr_t * load = intarr_create(len);
+  intarr_t * load = intarr_create(0);
   char c;
   fscanf(f, "%c ", &c);
 
