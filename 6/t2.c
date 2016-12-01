@@ -30,7 +30,6 @@
 int intarr_save_json( intarr_t* ia, const char* filename ){
 
   int len = ia->len;
-  int * arr = ia->data;
 
   FILE* f = fopen("filename", "w");
   if (f == NULL){
@@ -41,10 +40,10 @@ int intarr_save_json( intarr_t* ia, const char* filename ){
   fprintf(f, "[ ");
   for (i=0;i<len;i++){
     if (i != len-1){
-      fprintf(f, "%d, ", arr[i]);
+      fprintf(f, "%d, ", ia->data[i]);
     }
     else{
-      fprintf(f, "%d", arr[i]);
+      fprintf(f, "%d", ia->data[i]);
     }
   }
   fprintf(f, " ]");
