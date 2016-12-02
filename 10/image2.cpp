@@ -71,13 +71,13 @@ int Image::save( const char* filename) {
     if (!output_file) {
         return 1;
     }
-    if (!(reinterpret_cast<char*>(&cols), sizeof(unsigned int))){
+    if (!(output_file.write(reinterpret_cast<char*>(&cols), sizeof(unsigned int)))){
       return 1;
     }
-    if (!(reinterpret_cast<char*>(&rows), sizeof(unsigned int))){
+    if (!(output_file.write(reinterpret_cast<char*>(&rows), sizeof(unsigned int)))){
       return 1;
     }
-    if (!(reinterpret_cast<char*>(&pixels), sizeof(uint8_t) * cols * rows)){
+    if (!(output_file.write(reinterpret_cast<char*>(&pixels), sizeof(uint8_t) * cols * rows))){
       return 1;
     }
     /*
@@ -104,7 +104,7 @@ int Image::load( const char* filename ){
     if (!(input_file.read(reinterpret_cast<char*>(&rows), sizeof(unsigned int)))){
       return 1;
     }
-    if (!(reinterpret_cast<char*>(&pixels), sizeof(uint8_t) * cols * rows)){
+    if (!(input_file.read(reinterpret_cast<char*>(&pixels), sizeof(uint8_t) * cols * rows))){
       return 1;
     }
     /*
