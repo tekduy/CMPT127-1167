@@ -17,9 +17,13 @@
   length 0 should produce an output file containing an empty array.
 */
 int intarr_save_binary( intarr_t* ia, const char* filename ){
+if (ia == NULL){
+	return 1;
+}
 
-assert(ia);
-assert(ia->data);
+if (filename == NULL){
+	return 1;
+}
 
 unsigned int len = ia->len;
 
@@ -69,6 +73,11 @@ else{
   newly-allocated intarr_t on success, or NULL on failure.
 */
 intarr_t* intarr_load_binary( const char* filename ){
+
+if (filename == NULL){
+	return 1;
+}
+
   unsigned int len = 0;
 	FILE * f = fopen("filename", "rb");
 	if (f == NULL){
