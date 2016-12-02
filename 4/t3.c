@@ -31,7 +31,7 @@ void life( uint8_t array[], unsigned int cols, unsigned int rows ){
 
 	for( a=0; a<cols; a++ ){
 		for( b=0; b<rows; b++ ){
-			unsigned int hoody = hoodsize( cp, cols, rows, a, b );
+			unsigned int hoody = hoodsize( cop, cols, rows, a, b );
 
 			if( hoody < 2 ){
 				set_pixel( array, cols, rows, a, b, 0 );
