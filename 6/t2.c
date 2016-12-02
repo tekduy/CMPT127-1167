@@ -28,6 +28,10 @@
   ]
 */
 int intarr_save_json( intarr_t* ia, const char* filename ){
+	
+  if (ia == NULL){
+	return 1;
+  }
 
   int len = ia->len;
 
