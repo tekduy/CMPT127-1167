@@ -71,93 +71,47 @@ int Image::save( const char* filename) {
     if (!output_file) {
         return 1;
     }
+    if (!(reinterpret_cast<char*>(&cols), sizeof(unsigned int))){
+      return 1;
+    }
+    if (!(reinterpret_cast<char*>(&rows), sizeof(unsigned int))){
+      return 1;
+    }
+    if (!(reinterpret_cast<char*>(&pixels), sizeof(uint8_t) * cols * rows)){
+      return 1;
+    }
+    /*
     output_file.write(reinterpret_cast<char*>(&cols), sizeof(unsigned int));
     output_file.write(reinterpret_cast<char*>(&rows), sizeof(unsigned int));
     output_file.write(reinterpret_cast<char*>(&pixels), sizeof(uint8_t) * cols * rows);
+    */
     return 0;
 
-    /*
-    if (filename == NULL){
-    	return 1;
-    }
-
-    unsigned int cols;
-    unsigned int rows;
-    uint8_t pixels;
-
-    FILE* f = fopen(filename, "wb");
-    if (!f || f == NULL){
-      puts ("Failed to open image file for writing");
-    	return 1; //Unable to open file
-    }
-
-    else if (fwrite(&cols, sizeof(unsigned int), 1, f) == 1){
-      if (fwrite(&rows, sizeof(unsigned int), 2, f) == 2){
-        if (fwrite(&pixels, sizeof(uint8_t) * cols * rows, 3, f) == 3){
-          fclose(f);
-          return 0;
-        }
-        else{
-          fclose(f);
-          return 1;
-        }
-      }
-      else{
-        fclose(f);
-        return 1;
-      }
-    }
-   fclose(f);
-   return 1;
-   */
 }
 
 int Image::load( const char* filename ){
     if(filename == NULL){
        return 1;
     }
-    /*
-
-    if (!filename){
-    	return 1;
-    }
-
-    if (NULL == fopen(filename,"rb")){
-    	return 1;
-    }
-
-  	FILE * f = fopen(filename, "rb");
-  	if (!f || f == NULL){
-  		return 1; //Unable to open file
-  	}
-    Image img;
-
-    if ( fread (img.cols, sizeof(unsigned int), 1, f) != 1 ){
-      fclose(f);
-      return 1;
-    }
-
-    if ( fread (img.rows, sizeof(unsigned int), 2, f) != 2 ){
-      fclose(f);
-      return 1;
-    }
-
-    if (fread(img.pixels, sizeof(uint8_t), 3, f) != 3){
-      fclose(f);
-      return 1;
-    }
-
-    fclose(f);
-    //return img;
-    */
 
     ifstream input_file(filename,ios::binary);
     if (!input_file) {
         return 1;
     }
+    if (!(input_file.read(reinterpret_cast<char*>(&cols), sizeof(unsigned int)))){
+      return 1;
+    }
+    if (!(input_file.read(reinterpret_cast<char*>(&rows), sizeof(unsigned int)))){
+      return 1;
+    }
+    if (!(reinterpret_cast<char*>(&pixels), sizeof(uint8_t) * cols * rows)){
+      return 1;
+    }
+    /*
     input_file.read(reinterpret_cast<char*>(&cols), sizeof(unsigned int));
     input_file.read(reinterpret_cast<char*>(&rows), sizeof(unsigned int));
     input_file.read(reinterpret_cast<char*>(&pixels), sizeof(uint8_t) * cols * rows);
+    */
 
     return 0;
 }
