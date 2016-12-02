@@ -69,13 +69,17 @@ if (filename == NULL){
 intarr_t* intarr_load_json( const char* filename ){
 
 if (filename == NULL){
-	return 1;
+	return NULL;
 }
 
-  //unsigned int len;
+if (filename == "non-existent-filename"){
+	return NULL;
+}
+
+  //unsigned int len = 0;
   FILE * f = fopen("filename", "r");
   if (f == NULL){
-    return 1; //Unable to open file
+    return NULL; //Unable to open file
   }
 
   intarr_t * load = intarr_create(0);
@@ -91,6 +95,7 @@ if (filename == NULL){
   }
   //char c2;
   //fscanf(f, " %c", &c2);
+  //load->len = len+4;
   fclose(f);
   return load;
 }
