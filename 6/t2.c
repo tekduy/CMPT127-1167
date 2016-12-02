@@ -87,10 +87,10 @@ if (filename == "non-existent-filename"){
   fscanf(f, "%c ", &c);
 
   int value;
-  while (fscanf(f, "%d, ", &value)){
+  while (fscanf(f, "%d, ", &value) || fscanf(f, " %d,\n", &value)){
     intarr_push(load, value);
   }
-  if (fscanf(f, "%d", &value)){
+  if (fscanf(f, "%d", &value) || fscanf(f, " %d\n", &value)){
     intarr_push(load, value);
   }
   //char c2;
