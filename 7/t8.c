@@ -74,9 +74,58 @@ int list_append( list_t* list, int i )
     }
   }
 }
+*/
 
-/*
-void list_catenate(list_t * L1, list_t * L2) {
+void LLappendNode(list_t * list, element_t * newNode) {
+    if (newNode != NULL) {
+        newNode->next = NULL;
+        if (list->tail == NULL) {
+            assert(list->head == NULL);
+            list->head = newNode;
+            list->tail = newNode;
+        } else {       
+            list->tail->next = newNode; 
+            list->tail = newNode;
+        }
+    }
+}
+
+void LLappend(list_t * list, int value) {
+    element_t * newNode = malloc(sizeof(element_t));
+    if (newNode != NULL) {
+        newNode->val = value;
+        LLappendNode(list, newNode);
+    }
+}
+
+void list_insertNode(list_t * list, element_t * newNode) {
+    if (list->head == NULL) {
+        assert(list->tail == NULL);
+        list->head = newNode;
+        list->tail = newNode;
+        newNode->next = NULL;
+    } else if (list->head->val >= newNode->val) {
+       
+        newNode->next = list->head;
+        list->head = newNode;
+    } else {
+       
+        element_t * prev = list->head;
+        element_t * curr = list->head->next;
+        while (curr != NULL && curr->val < newNode->val) { 
+            curr = curr->next;
+            prev = prev->next;
+        }
+        newNode->next = curr;
+        prev->next = newNode;
+        if (curr == NULL) {
+ 
+            list->tail = newNode;
+        }
+    }
+}
+
+void LLcatenate(list_t * L1, list_t * L2) {
     if (L2->head == NULL) {
         assert(L2->tail == NULL);
     } else if (L1->head == NULL) {
@@ -86,11 +135,9 @@ void list_catenate(list_t * L1, list_t * L2) {
         L1->tail->next = L2->head;
         L1->tail= L2->tail;
     }
-    list_destroy(L2);
+    free(L2);
 }
-*/
 
-/*
 void list_sort(list_t * list) {
     if (list->head == list->tail) {
         return;
@@ -108,9 +155,9 @@ void list_sort(list_t * list) {
         next = curr->next;
         curr->next = NULL;
         if (curr->val <= pivot) {
-            list_append(first, curr->val);
+            LLappendNode(first, curr);
         } else {
-            list_append(second, curr->val);
+            LLappendNode(second, curr);
         }
         curr = next;
     }
@@ -120,61 +167,10 @@ void list_sort(list_t * list) {
     list_sort(first);
     list_sort(second);
 
-    printf("First contains:");
-    list_print(first);
-
-    list_catenate(list, first);
-    list_append(list, pivot_node->val);
-    list_catenate(list, second);
+    LLcatenate(list, first);
+    LLappendNode(list, pivot_node);
+    LLcatenate(list, second);
 }
-
-*/
-
-void list_insertNode(list_t * list, element_t * newNode) {
-    // list empty
-    if (list->head == NULL) {
-        assert(list->tail == NULL);
-        list->head = newNode;
-        list->tail = newNode;
-        newNode->next = NULL;
-    } else if (list->head->val >= newNode->val) {
-        // new head
-        newNode->next = list->head;
-        list->head = newNode;
-    } else {
-        // typical case
-        element_t * prev = list->head;
-        element_t * curr = list->head->next;
-        while (curr != NULL && curr->val < newNode->val) { // insertion pt found while is False
-            curr = curr->next;
-            prev = prev->next;
-        }
-        newNode->next = curr;
-        prev->next = newNode;
-        if (curr == NULL) {
-            // new tail
-            list->tail = newNode;
-        }
-    }
-}
-
-void list_sort(list_t * list){
-  list_t * newlist = list_create();
-
-  element_t * curr = list->head;
-  while (curr != NULL){
-    element_t * next = curr->next;
-    list_insertNode(newlist, curr);
-    curr = next;
-  }
-
-  list_t tmp;
-  tmp = *list;
-  *list = *newlist;
-  *newlist = tmp;
-  free(newlist);
-}
-
 /*
 void list_print( list_t* list )
 {
@@ -203,3 +199,4 @@ int main(){
   list_print(list);
 }
 */
+
