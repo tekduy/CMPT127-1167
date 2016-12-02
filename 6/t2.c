@@ -39,7 +39,7 @@ if (filename == NULL){
 
   int len = ia->len;
 
-  FILE* f = fopen("filename", "w");
+  FILE* f = fopen(filename, "w");
   if (!f || f == NULL){
     puts ("Failed to open image file for writing");
   	return 1; //Unable to open file
@@ -76,9 +76,12 @@ if (filename == "non-existent-filename"){
 	return NULL;
 }
 
+if (NULL == fopen(filename,"r")){
+	return NULL;
+}
   //unsigned int len = 0;
-  FILE * f = fopen("filename", "r");
-  if (f == NULL){
+  FILE * f = fopen(filename, "r");
+  if (!f || f == NULL){
     return NULL; //Unable to open file
   }
 
@@ -100,17 +103,23 @@ if (filename == "non-existent-filename"){
   return load;
 }
 
-/*int main(){
-
-intarr_t * save = intarr_create(5);
+/*
+int main(){
+intarr_t * save = intarr_create(0);
 int i;
 for (i=0; i<6; i++){
 intarr_push(save, i);
 }
 intarr_save_json(save, "test.json");
-intarr_load_json("test.json");
+intarr_t * test;
+test = intarr_load_json("test.json");
+printf("%d\n", test->len);
+intarr_save_json(test, "test2.json");
+test = intarr_load_json("swag.json");
+printf("%d\n", test->len);
 
-}*/
+}
+*/
 
 
 
