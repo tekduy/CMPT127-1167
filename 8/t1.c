@@ -88,24 +88,32 @@ int point_array_remove( point_array_t* pa, unsigned int i ){
      return 1;
   }
 
-  int j = i ;
-  int k;
-  int len2 = pa->len;
+  if( pa->len == 0){
+	return 1;
+  }
 
-      for (k=0;k<(len2-j-1);k++){
+  //int j = i ;
+  //int k;
+  //int len2 = pa->len;
+
+    		pa->points[i].x = pa->points[len-1].x ;
+    		pa->points[i].y = pa->points[len-1].y ;
+    		pa->points[i].z = pa->points[len-1].z ;
+
+
+      /*for (k=0;k<(len2-j-1);k++){
     		//pa->points[j+k] = pa->points[j+1+k];
     		pa->points[j+k].x = pa->points[j+1+k].x ;
     		pa->points[j+k].y = pa->points[j+1+k].y ;
     		pa->points[j+k].z = pa->points[j+1+k].z ;
       }
-
-	//switch the two below and add a -1 to pa->len in pa->points if this doesn't work
+*/
 	
 	pa->points = realloc(pa->points, (pa->len-1) * sizeof(point_t)) ;
 	if(pa->points == NULL)
 	{
 		return 1 ;
 	}
-	pa->len = pa->len - 1;
+	pa->len = (pa->len)-1;
 	return 0;
 }
