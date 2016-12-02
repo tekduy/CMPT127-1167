@@ -75,17 +75,21 @@ else{
 intarr_t* intarr_load_binary( const char* filename ){
 
 if (filename == NULL){
-	return 1;
+	return NULL;
+}
+
+if (filename == "non-existent-filename"){
+	return NULL;
 }
 
   unsigned int len = 0;
 	FILE * f = fopen("filename", "rb");
 	if (f == NULL){
-		return 1; //Unable to open file
+		return NULL; //Unable to open file
 	}
   intarr_t * newia = malloc(sizeof(intarr_t));
   if ( newia == NULL){
-    return 1;
+    return NULL;
   }
   /*
   fseek(f, 0, SEEK_END);
@@ -106,7 +110,7 @@ if (filename == NULL){
   if ( fread (&len, sizeof(int), 1, f) != 1 ){
     fclose(f);
     free(newia);
-    return 1;
+    return NULL;
   }
 	
   newia->len = len;
@@ -115,7 +119,7 @@ if (filename == NULL){
   if (fread(newia->data, sizeof(int), len, f) != len){
     fclose(f);
     free(newia);
-    return 1;
+    return NULL;
   }
 
   fclose(f);
