@@ -57,6 +57,9 @@ int Image::get_pixel( unsigned int x, unsigned int y, uint8_t* colorp ){
 }
 
 int Image::save( const char* filename) {
+    if(filename == NULL){
+       return 1;
+    }
     ofstream output_file(filename,ios::binary);
     if (!output_file) {
         return 0;
@@ -68,6 +71,9 @@ int Image::save( const char* filename) {
 }
 
 int Image::load( const char* filename ){
+    if(filename == NULL){
+       return 1;
+    }
     ifstream input_file(filename,ios::binary);
     if (!input_file) {
         return 1;
