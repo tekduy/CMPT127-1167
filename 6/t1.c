@@ -99,8 +99,10 @@ intarr_t* intarr_load_binary( const char* filename ){
     free(newia);
     return 1;
   }
-
+	
+  newia->len = len;
   newia->data = malloc(len*sizeof(int));
+
   if (fread(newia->data, sizeof(int), len, f) != len){
     fclose(f);
     free(newia);
