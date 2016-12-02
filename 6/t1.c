@@ -27,8 +27,8 @@ if (filename == NULL){
 
 unsigned int len = ia->len;
 
-FILE* f = fopen("filename", "wb");
-if (f == NULL){
+FILE* f = fopen(filename, "wb");
+if (!f || f == NULL){
   puts ("Failed to open image file for writing");
 	return 1; //Unable to open file
 }
@@ -86,8 +86,12 @@ if (!filename){
 	return NULL;
 }
 
+if (NULL == fopen(filename,"rb")){
+	return NULL;
+}
+ 
   unsigned int len = 0;
-	FILE * f = fopen("filename", "rb");
+	FILE * f = fopen(filename, "rb");
 	if (!f || f == NULL){
 		return NULL; //Unable to open file
 	}
@@ -129,3 +133,22 @@ if (!filename){
   fclose(f);
   return newia;
 }
+
+/*
+int main(){
+intarr_t * save = intarr_create(0);
+int i;
+for (i=0; i<6; i++){
+intarr_push(save, i);
+}
+intarr_save_binary(save, "test.json");
+intarr_t * test;
+test = intarr_load_binary("test.json");
+printf("%d\n", test->len);
+intarr_save_binary(test, "test2.json");
+test = intarr_load_binary("swag.json");
+printf("%d\n", test->len);
+
+}
+
+*/
