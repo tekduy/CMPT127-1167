@@ -82,9 +82,13 @@ if (filename == "non-existent-filename"){
 	return NULL;
 }
 
+if (!filename){
+	return NULL;
+}
+
   unsigned int len = 0;
 	FILE * f = fopen("filename", "rb");
-	if (f == NULL){
+	if (!f || f == NULL){
 		return NULL; //Unable to open file
 	}
   intarr_t * newia = malloc(sizeof(intarr_t));
