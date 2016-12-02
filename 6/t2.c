@@ -40,7 +40,7 @@ if (filename == NULL){
   int len = ia->len;
 
   FILE* f = fopen("filename", "w");
-  if (f == NULL){
+  if (!f || f == NULL){
     puts ("Failed to open image file for writing");
   	return 1; //Unable to open file
   }
@@ -99,3 +99,21 @@ if (filename == "non-existent-filename"){
   fclose(f);
   return load;
 }
+
+/*int main(){
+
+intarr_t * save = intarr_create(5);
+int i;
+for (i=0; i<6; i++){
+intarr_push(save, i);
+}
+intarr_save_json(save, "test.json");
+intarr_load_json("test.json");
+
+}*/
+
+
+
+
+
+
