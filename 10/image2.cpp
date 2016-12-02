@@ -68,7 +68,7 @@ int Image::save( const char* filename) {
        return 1;
     }
     ofstream output_file(filename,ios::binary);
-    if (!output_file) {
+    if (!output_file || output_file == NULL) {
         return 1;
     }
     if (!(output_file.write(reinterpret_cast<char*>(&cols), sizeof(unsigned int)))){
@@ -95,7 +95,7 @@ int Image::load( const char* filename ){
     }
 
     ifstream input_file(filename,ios::binary);
-    if (!input_file) {
+    if (!input_file || input_file == NULL) {
         return 1;
     }
     if (!(input_file.read(reinterpret_cast<char*>(&cols), sizeof(unsigned int)))){
