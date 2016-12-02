@@ -19,6 +19,7 @@ typedef struct list
 } list_t;
 */
 
+/*
 list_t* list_create( void )
 {
   list_t* l = malloc( sizeof(list_t) );
@@ -74,6 +75,7 @@ int list_append( list_t* list, int i )
   }
 }
 
+/*
 void list_catenate(list_t * L1, list_t * L2) {
     if (L2->head == NULL) {
         assert(L2->tail == NULL);
@@ -86,6 +88,7 @@ void list_catenate(list_t * L1, list_t * L2) {
     }
     list_destroy(L2);
 }
+*/
 
 /*
 void list_sort(list_t * list) {
@@ -172,6 +175,7 @@ void list_sort(list_t * list){
   free(newlist);
 }
 
+/*
 void list_print( list_t* list )
 {
   printf( "{" );
