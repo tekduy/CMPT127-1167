@@ -82,12 +82,16 @@ int point_array_append( point_array_t* pa, point_t* p ){
 int point_array_remove( point_array_t* pa, unsigned int i ){
   assert( pa != NULL );
 
-	int j = i ;
+  if (i >= pa->len || i < 0){
+     return 1;
+  }
+
+  int j = i ;
   int k;
   int len2 = pa->len;
 	if(j < (pa->len - 1))
   	{
-      for (k=0;k<(len2-j);k++){
+      for (k=0;k<(len2-j-1);k++){
     		pa->points[j+k] = pa->points[j+1+k];
     		pa->points[j+k].x = pa->points[j+1+k].x ;
     		pa->points[j+k].y = pa->points[j+1+k].y ;
