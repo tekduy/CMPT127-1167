@@ -89,8 +89,8 @@ if (filename == NULL){
   if (fscanf(f, "%d", &value)){
     intarr_push(load, value);
   }
-  char c2;
-  fscanf(f, " %c", &c2);
+  //char c2;
+  //fscanf(f, " %c", &c2);
   fclose(f);
   return load;
 }
