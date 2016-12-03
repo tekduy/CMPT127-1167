@@ -64,22 +64,26 @@ int point_array_append( point_array_t* pa, point_t* p ){
   if (pa == NULL){
     return 1;
   }
+  /*
   if (pa->reserved == 0){
     pa->reserved = 2;
   }
   if (pa->len == pa->reserved){
     pa->reserved = (pa->reserved)*2;
   }
+  */
 
-  pa->points = realloc(pa->points, pa->reserved * sizeof(point_t));
-  //pa->points = realloc(pa->points, pa->len * sizeof(point_t));
+  //pa->points = realloc(pa->points, pa->reserved * sizeof(point_t));
+  pa->len = pa->len + 1;
+  pa->points = realloc(pa->points, pa->len * sizeof(point_t));
   if (pa->points == NULL){
     return 1;
   }
-  pa->len = pa->len + 1;
+
   pa->points[pa->len - 1].x = p->x ;
 	pa->points[pa->len - 1].y = p->y ;
 	pa->points[pa->len - 1].z = p->z ;
+  //puts("append is a success");
 	return 0;
 }
 
@@ -89,20 +93,31 @@ int point_array_append( point_array_t* pa, point_t* p ){
 // the array by one. The order of points in the array may change.
 int point_array_remove( point_array_t* pa, unsigned int i ){
   if ( pa == NULL || !pa){
-	return 1;
+    //puts ("pa == NULL");
+	  return 1;
   }
 
   if (i >= pa->len){
+     //puts ("pa == NULL");
      return 1;
   }
-
+  /*
   if (!i){
-	return 1;
+     //puts("i does not exist");
+	   return 1;
   }
+  */
 
   if( pa->len == 0){
-	return 1;
+     //puts("length is already 0");
+	   return 1;
   }
+
+  if (i == (pa->len)-1){
+    pa->len = (pa->len)-1;
+    return 0;
+  }
+
   int len2 = pa->len;
   int j = i ;
 
@@ -120,3 +135,34 @@ int point_array_remove( point_array_t* pa, unsigned int i ){
   pa->len = (pa->len)-1;
 	return 0;
 }
+
+/*
+int main(){
+  point_array_t A;
+  point_array_init (&A);
+
+  point_t p;
+  p.x = 0.0;
+  p.y = 1.0;
+  p.z = 2.0;
+
+  point_t o;
+  p.x = 0.0;
+  p.y = 1.0;
+  p.z = 2.0;
+
+  point_array_append(&A, &p);
+  point_array_append(&A, &o);
+  int i, j;
+  i = point_array_remove(&A, 0);
+  printf("%d\n", i);
+  j = point_array_remove(&A, 0);
+  printf("%d\n", j);
+  point_array_append(&A, &p);
+  point_array_append(&A, &o);
+  j = point_array_remove(&A, 1);
+  printf("%d\n", j);
+  j = point_array_remove(&A, 0);
+  printf("%d\n", j);
+}
+*/
