@@ -302,7 +302,7 @@ void normalize( uint8_t array[],
     test[i] = 0;
   }
   for (i=0; i<length; i++){
-    test[i] = ((array[i] -oldmin)*255)/(oldmax-oldmin);
+    test[i] = ((array[i] -oldmin)*255)/(difference);
   }
   for (i=0; i<length; i++){
     if (array[i] == oldmin){
