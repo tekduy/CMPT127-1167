@@ -86,7 +86,7 @@ uint8_t min( const uint8_t array[],
 	     unsigned int rows )
 {
   // your code here
-	int dark = array[0];
+int dark = array[0];
 	int i, k;
 
 	for (i=0; i<cols; i++)
@@ -297,6 +297,13 @@ void normalize( uint8_t array[],
 
   int i;
   int length = rows * cols;
+  uint8_t test[length];
+  for (i=0; i<length; i++){
+    test[i] = 0;
+  }
+  for (i=0; i<length; i++){
+    test[i] = ((array[i] -oldmin)*255)/(oldmax-oldmin);
+  }
   for (i=0; i<length; i++){
     if (array[i] == oldmin){
       array[i] = newmin;
@@ -306,7 +313,7 @@ void normalize( uint8_t array[],
     }
 
     else{
-      array[i] = (newmax-newmin)/(oldmax-oldmin)*(array[i]-oldmin)+newmin;
+      array[i] = round(test[i]);
     }
   }
 return;
@@ -476,20 +483,38 @@ uint8_t* region_copy( const uint8_t array[],
 
 	return copy;
 }
+
 /*
 int main(){
   unsigned int width = 3;
   unsigned int height = 1;
   uint8_t * img = malloc( width * height * sizeof(uint8_t));
 
-  img[0] = 110;
-  img[1] = 100;
-  img[2] = 200;
+
+  img[0] = 51;
+  img[1] = 136;
+  img[2] = 199;
+
+  unsigned int width2 = 3;
+  unsigned int height2 = 1;
+  uint8_t * img2 = malloc( width2 * height2 * sizeof(uint8_t));
+
+
+  img2[0] = 6;
+  img2[1] = 103;
+  img2[2] = 170;
+
 
   normalize( img, width, height );
   int i;
   for (i=0;i<3;i++){
     printf("[%d] is: %d\n", i, img[i]);
+  }
+
+  normalize( img2, width2, height2 );
+  int j;
+  for (j=0;j<3;j++){
+    printf("[%d] is: %d\n", j, img2[j]);
   }
 }
 */
