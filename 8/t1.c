@@ -80,7 +80,7 @@ int point_array_append( point_array_t* pa, point_t* p ){
 // Remove the point at index i from the array, reducing the size of
 // the array by one. The order of points in the array may change.
 int point_array_remove( point_array_t* pa, unsigned int i ){
-  if ( pa == NULL ){
+  if ( pa == NULL || !pa){
 	return 1;
   }
 
@@ -88,7 +88,7 @@ int point_array_remove( point_array_t* pa, unsigned int i ){
      return 1;
   }
 
-  if (i == NULL){
+  if (!i){
 	return 1;
   }
 
