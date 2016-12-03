@@ -99,27 +99,24 @@ int point_array_remove( point_array_t* pa, unsigned int i ){
 	return 1;
   }
 
-
+  if (i == (pa->len)-1){
+    pa->len = (pa->len)-1;
+    return 0;
+  }
+  
   int j = i ;
-  int k;
   int len2 = pa->len;
-  /*
-    		pa->points[i].x = pa->points[(pa->len)-1].x ;
-    		pa->points[i].y = pa->points[(pa->len)-1].y ;
-    		pa->points[i].z = pa->points[(pa->len)-1].z ;
-  */
 
+  pa->points[j].x = pa->points[len2-1].x;
+	pa->points[j].y = pa->points[len2-1].y;
+	pa->points[j].z = pa->points[len2-1].z;
+  /*
   for (k=0;k<(len2-j-1);k++){
 		//pa->points[j+k] = pa->points[j+1+k];
 		pa->points[j+k].x = pa->points[j+1+k].x ;
 		pa->points[j+k].y = pa->points[j+1+k].y ;
 		pa->points[j+k].z = pa->points[j+1+k].z ;
   }
-
-  /*
-  pa->points[j].x = NULL;
-  pa->points[j].y = NULL;
-  pa->points[j].z = NULL;
   */
 
   /*
