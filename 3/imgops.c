@@ -346,7 +346,7 @@ return;
       }
 
       else{
-        array[i] = (newmax-newmin)/(oldmax-oldmin)*(array[i]-newmax)+oldmax;
+        array[i] = ((newmax-newmin)/(oldmax-oldmin)*(array[i]-oldmin))+newmin;
       }
     }
   }
@@ -539,3 +539,20 @@ uint8_t* region_copy( const uint8_t array[],
 
 	return copy;
 }
+/*
+int main(){
+  unsigned int width = 3;
+  unsigned int height = 1;
+  uint8_t * img = malloc( width * height * sizeof(uint8_t));
+
+  img[0] = 110;
+  img[1] = 100;
+  img[2] = 200;
+
+  normalize( img, width, height );
+  int i;
+  for (i=0;i<3;i++){
+    printf("[%d] is: %d\n", i, img[i]);
+  }
+}
+*/
