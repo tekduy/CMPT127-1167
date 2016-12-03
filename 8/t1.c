@@ -64,11 +64,19 @@ int point_array_append( point_array_t* pa, point_t* p ){
   if (pa == NULL){
     return 1;
   }
-  pa->len = pa-> len + 1 ;
-  pa->points = realloc(pa->points, pa->len * sizeof(point_t));
+  if (pa->reserved == 0){
+    pa->reserved = 2;
+  }
+  if (pa->len == pa->reserved){
+    pa->reserved = (pa->reserved)*2;
+  }
+
+  pa->points = realloc(pa->points, pa->reserved * sizeof(point_t));
+  //pa->points = realloc(pa->points, pa->len * sizeof(point_t));
   if (pa->points == NULL){
     return 1;
   }
+  pa->len = pa->len + 1;
   pa->points[pa->len - 1].x = p->x ;
 	pa->points[pa->len - 1].y = p->y ;
 	pa->points[pa->len - 1].z = p->z ;
@@ -101,12 +109,14 @@ int point_array_remove( point_array_t* pa, unsigned int i ){
 	pa->points[j].x = pa->points[len2-1].x;
 	pa->points[j].y = pa->points[len2-1].y;
 	pa->points[j].z = pa->points[len2-1].z;
-	
-	pa->len = (pa->len)-1;
+
+  /*
 	pa->points = realloc(pa->points, (pa->len) * sizeof(point_t)) ;
 	if(pa->points == NULL)
 	{
 		return 1 ;
 	}
+  */
+  pa->len = (pa->len)-1;
 	return 0;
 }
