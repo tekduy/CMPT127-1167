@@ -284,44 +284,31 @@ void scale_brightness( uint8_t array[],
 void normalize( uint8_t array[],
         unsigned int cols,
         unsigned int rows )
-{   
+{
   uint8_t oldmin = min(array, cols, rows);
   uint8_t oldmax = max(array, cols, rows);
   uint8_t difference = oldmax-oldmin;
-/*
   printf("min is: %d\n", oldmin);
   printf("max is: %d\n", oldmax);
   printf("oldrange is: %d\n", difference);
-*/
 
   uint8_t newmax = 255;
   uint8_t newmin = 0;
 
   int i;
   int length = rows * cols;
-  uint8_t ratios[length];
-  for (i=0; i<length;i++){
-    ratios[i] = 0;
-
-  if(difference > 0){
-  }
-    for (i=0; i<length;i++){
-      ratios[i] = (array[i]/difference)-1;
+  for (i=0; i<length; i++){
+    if (array[i] == oldmin){
+      array[i] = newmin;
     }
-    for (i=0; i<length; i++){
-      if (array[i] == oldmin){
-        array[i] = newmin;
-      }
-      else if (array[i] == oldmax){
-        array[i] = newmax;
-      }
+    else if (array[i] == oldmax){
+      array[i] = newmax;
+    }
 
-      else{
-        array[i] = ((newmax-newmin)/(oldmax-oldmin)*(array[i]-oldmin))+newmin;
-      }
+    else{
+      array[i] = (newmax-newmin)/(oldmax-oldmin)*(array[i]-oldmin)+newmin;
     }
   }
-
 return;
 }
 
