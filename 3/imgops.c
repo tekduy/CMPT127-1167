@@ -284,44 +284,15 @@ void scale_brightness( uint8_t array[],
 void normalize( uint8_t array[],
         unsigned int cols,
         unsigned int rows )
-{   /*
-    int minval = min(array, cols, rows);
-    int maxval = max(array, cols, rows);
-    int maxrange = maxval-minval;
-    double scale_factor = ((maxval - minval) / maxrange);
-    int newmax = 255;
-    int newmin = 0;
-    int newrange = newmax-newmin;
-    int length = rows * cols;
-    uint8_t ratios[length];
-    int difference = maxval-minval;
-  int i ;
-  for(i=0;i<length;i++)
-  {
-    ratios[i] = 0;
-    ratios[i] = ((array[i]/difference)-1);
-    if(array[i] == minval)
-      {
-        array[i] = 0;
-      }
-    else if (array[i] == maxval)
-    {
-      array[i] = 255;
-    }
-    else
-    {
-      array[i] = round(ratios[i] * 255);
-    }
-  }
-return;
-*/
-
+{   
   uint8_t oldmin = min(array, cols, rows);
   uint8_t oldmax = max(array, cols, rows);
   uint8_t difference = oldmax-oldmin;
+/*
   printf("min is: %d\n", oldmin);
   printf("max is: %d\n", oldmax);
   printf("oldrange is: %d\n", difference);
+*/
 
   uint8_t newmax = 255;
   uint8_t newmin = 0;
@@ -351,27 +322,6 @@ return;
     }
   }
 
-/*
-    int minval = min(array, cols, rows);
-    int maxval = max(array, cols, rows);
-    printf("min is: %d\n", minval);
-    printf("max is: %d\n", maxval);
-    double scale_factor = ((maxval - minval)/maxval);
-    printf("scale factor is: %f\n", scale_factor);
-    double b = (-(scale_factor * minval) );
-    printf("b is: %f\n", b);
-    int length = rows * cols ;
-    int i;
-    for(i=0;i<length;i++)
-    {
-      if(round((array[i] * scale_factor) + b)  >= 255 ){
-	       array[i] = 255 ;
-	    }
-      else{
-	     array[i] = (round((array[i] * scale_factor) + b ));
-	    }
-    }
-*/
 return;
 }
 
