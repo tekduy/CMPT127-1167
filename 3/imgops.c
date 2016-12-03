@@ -315,31 +315,51 @@ void normalize( uint8_t array[],
   }
 return;
 */
-/*
+
   uint8_t oldmin = min(array, cols, rows);
   uint8_t oldmax = max(array, cols, rows);
-  uint8_t oldrange = oldmax-oldmin;
+  uint8_t difference = oldmax-oldmin;
+  printf("min is: %d\n", oldmin);
+  printf("max is: %d\n", oldmax);
+  printf("oldrange is: %d\n", difference);
 
-  uint8_t newmin = 0;
   uint8_t newmax = 255;
-  uint8_t newrange = newmax - newmin;
-  double scale;
+  uint8_t newmin = 0;
+
   int i;
   int length = rows * cols;
-  for (i=0; i<length; i++){
-    if (oldrange == 0){
-	     array[i] = array[i];
+  uint8_t ratios[length];
+  for (i=0; i<length;i++){
+    ratios[i] = 0;
+
+  if(difference > 0){
+  }
+    for (i=0; i<length;i++){
+      ratios[i] = (array[i]/difference)-1;
     }
-    else{
-    	scale = (array[i]-oldmin)/oldrange;
-      array[i] = round((newrange*scale) + newmin);
+    for (i=0; i<length; i++){
+      if (array[i] == oldmin){
+        array[i] = newmin;
+      }
+      else if (array[i] == oldmax){
+        array[i] = newmax;
+      }
+
+      else{
+        array[i] = (newmax-newmin)/(oldmax-oldmin)*(array[i]-newmax)+oldmax;
+      }
     }
   }
-*/
+
+/*
     int minval = min(array, cols, rows);
     int maxval = max(array, cols, rows);
-    double scale_factor = ((maxval - minval)/255);
+    printf("min is: %d\n", minval);
+    printf("max is: %d\n", maxval);
+    double scale_factor = ((maxval - minval)/maxval);
+    printf("scale factor is: %f\n", scale_factor);
     double b = (-(scale_factor * minval) );
+    printf("b is: %f\n", b);
     int length = rows * cols ;
     int i;
     for(i=0;i<length;i++)
@@ -351,6 +371,7 @@ return;
 	     array[i] = (round((array[i] * scale_factor) + b ));
 	    }
     }
+*/
 return;
 }
 
